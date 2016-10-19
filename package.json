@@ -1,11 +1,11 @@
 {
-  "name": "angular2-phoenix-channels",
+  "name": "angular2-phoenix",
   "version": "0.0.1",
   "description": "Injectable, Observable, Angular2 compatible wrapper for Phoenix Channels",
   "main": "dist/angular2-phoenix-channels.js",
-  "jsnext:main": "lib/index.js",
+  "jsnext:main": "channels/index.ts",
   "scripts": {
-    "build": "mkdir -p dist && rollup -e angular2,phoenix_js lib/index.js | babel -m umd --module-id angular2-phoenix-channels -o dist/angular2-phoenix-channels.js",
+    "build": "mkdir -p dist && rollup -e phoenix channels/index.ts | babel -m umd --module-id angular2-phoenix-channels -o dist/angular2-phoenix-channels.js",
     "pretest": "eslint lib test",
     "test": "mocha --compilers js:babel/register --recursive test",
     "prepublish": "npm run build"
@@ -26,16 +26,14 @@
   "bugs": {
     "url": "https://github.com/gaslight/angular2-phoenix-channels/issues"
   },
-  "files": [
-    "lib",
-    "dist"
-  ],
   "dependencies": {
-    "angular2": "^2.0.0-alpha.46",
-    "phoenix_js": "^0.0.2"
+    "phoenix": "^1.2.1",
+    "rxjs": "5.0.0-beta.12"
   },
   "homepage": "https://github.com/gaslight/angular2-phoenix-channels#readme",
   "devDependencies": {
+    "@types/node": "^6.0.45",
+    "@types/phoenix": "0.0.4",
     "babel": "^5.8.21",
     "babel-eslint": "^4.0.10",
     "eslint": "^1.2.0",

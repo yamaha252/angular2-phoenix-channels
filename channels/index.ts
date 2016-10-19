@@ -1,11 +1,10 @@
-import { Socket } from "phoenix_js";
-import {EventEmitter, Observable } from 'angular2';
+import { Socket, Channel } from 'phoenix';
+import { Observable } from 'rxjs';
 
 export class PhoenixChannel {
+  public channel: Channel;
 
-  constructor(socket, topic, options = {}) {
-    this.socket = socket;
-    this.topic = topic;
+  constructor(public socket: Socket, public topic: string, options = {}) {
     this.channel = this.socket.channel(topic, options);
   }
 
@@ -13,32 +12,31 @@ export class PhoenixChannel {
     let joined = this.channel.join();
     return new Observable( (observer) => {
       joined
-        .receive("ok", resp => {
-          console.log("connected", resp);
-          observer.next(resp);
-        })
-        .receive("error", resp => { observer.error(resp); });
+          .receive("ok", resp => {
+            observer.next(resp);
+          })
+          .receive("error", resp => { observer.error(resp); });
     });
   }
 
   observeMessage(message) {
     return new Observable( (observer) => {
       this.channel.on(message, (resp) => {
-        console.log(message, resp);
         observer.next(resp);
       });
     });
   }
 }
 
-export default class PhoenixChannels {
+export class PhoenixChannels {
+  public socket: Socket;
 
-  constructor(socketUrl) {
+  constructor(socketUrl: string) {
     this.socket =  new Socket(socketUrl);
     this.socket.connect();
   }
 
-  channel(topic) {
+  channel(topic: string) {
     return new PhoenixChannel(this.socket, topic);
   }
 }
