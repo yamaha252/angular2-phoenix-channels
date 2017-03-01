@@ -8,7 +8,7 @@ export class PhoenixChannel {
     this.channel = this.socket.channel(topic, options);
   }
 
-  join(options = {}) {
+  join() {
     let joined = this.channel.join();
     return new Observable( (observer) => {
       joined
@@ -36,7 +36,7 @@ export class PhoenixChannels {
     this.socket.connect();
   }
 
-  channel(topic: string) {
-    return new PhoenixChannel(this.socket, topic);
+  channel(topic: string, options = {}) {
+    return new PhoenixChannel(this.socket, topic, options);
   }
 }
