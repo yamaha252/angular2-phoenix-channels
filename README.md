@@ -28,11 +28,13 @@ class CandidateService {
 }
 ```
 
-Join a channel.
+Join and leave a channel.
 
 ```javascript
 let allCandidatesChannel = this.phoenixChannels.channel("candidates:all");
 allCandidatesChannel.join();
+// leave
+allCandidatesChannel.leave();
 ```
 
 Observe messages. `observeMessage` returns an observable can call subscribe

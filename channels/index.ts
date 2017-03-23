@@ -14,6 +14,19 @@ export class PhoenixChannel {
       joined
           .receive("ok", resp => {
             observer.next(resp);
+            observer.complete();
+          })
+          .receive("error", resp => { observer.error(resp); });
+    });
+  }
+
+  leave() {
+    let leaved = this.channel.join();
+    return new Observable( (observer) => {
+      leaved
+          .receive("ok", resp => {
+            observer.next(resp);
+            observer.complete();
           })
           .receive("error", resp => { observer.error(resp); });
     });

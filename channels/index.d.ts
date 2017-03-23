@@ -5,6 +5,7 @@ export declare class PhoenixChannel {
     public channel: Channel;
     constructor(public socket: Socket, public topic: string, options: Object);
     join();
+    leave();
     observeMessage (message: string);
 }
 
