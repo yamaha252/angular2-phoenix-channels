@@ -27,13 +27,13 @@
     "url": "https://github.com/gaslight/angular2-phoenix-channels/issues"
   },
   "dependencies": {
+    "@types/phoenix": "0.0.4",
     "phoenix": "^1.2.1",
     "rxjs": "5.0.0-beta.12"
   },
   "homepage": "https://github.com/gaslight/angular2-phoenix-channels#readme",
   "devDependencies": {
     "@types/node": "^6.0.45",
-    "@types/phoenix": "0.0.4",
     "babel": "^5.8.21",
     "babel-eslint": "^4.0.10",
     "eslint": "^1.2.0",
