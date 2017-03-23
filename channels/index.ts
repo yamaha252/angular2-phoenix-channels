@@ -37,6 +37,9 @@ export class PhoenixChannel {
       this.channel.on(message, (resp) => {
         observer.next(resp);
       });
+      this.channel.onClose(() => {
+        observer.complete();
+      });
     });
   }
 }
