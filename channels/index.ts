@@ -21,7 +21,7 @@ export class PhoenixChannel {
   }
 
   leave() {
-    let leaved = this.channel.join();
+    let leaved = this.channel.leave();
     return new Observable( (observer) => {
       leaved
           .receive("ok", resp => {
