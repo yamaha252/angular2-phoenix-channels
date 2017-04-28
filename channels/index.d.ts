@@ -3,10 +3,10 @@ import { Observable } from 'rxjs';
 
 export declare class PhoenixChannel {
     public channel: Channel;
-    constructor(public socket: Socket, public topic: string, options: Object);
-    join();
-    leave();
-    observeMessage (message: string);
+    constructor(socket: Socket, topic: string, options: Object);
+    join(): Observable<any>;
+    leave(): Observable<any>;
+    observeMessage (message: string): Observable<any>;
 }
 
 export declare class PhoenixChannels {

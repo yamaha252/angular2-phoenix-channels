@@ -8,7 +8,7 @@ export class PhoenixChannel {
     this.channel = this.socket.channel(topic, options);
   }
 
-  join() {
+  join(): Observable<any> {
     let joined = this.channel.join();
     return new Observable( (observer) => {
       joined
@@ -20,7 +20,7 @@ export class PhoenixChannel {
     });
   }
 
-  leave() {
+  leave(): Observable<any> {
     let leaved = this.channel.leave();
     return new Observable( (observer) => {
       leaved
@@ -32,7 +32,7 @@ export class PhoenixChannel {
     });
   }
 
-  observeMessage(message) {
+  observeMessage(message: string): Observable<any> {
     return new Observable( (observer) => {
       this.channel.on(message, (resp) => {
         observer.next(resp);
